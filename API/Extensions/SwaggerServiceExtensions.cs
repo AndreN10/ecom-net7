@@ -8,7 +8,7 @@ namespace API.Extensions
         {
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(c => 
             {
                 var securitySchema = new OpenApiSecurityScheme
                 {
@@ -23,15 +23,18 @@ namespace API.Extensions
                         Id = "Bearer"
                     }
                 };
+
                 c.AddSecurityDefinition("Bearer", securitySchema);
+
                 var securityRequirement = new OpenApiSecurityRequirement
                 {
                     {
                         securitySchema, new[] {"Bearer"}
                     }
                 };
-                c.AddSecurityRequirement(securityRequirement);
 
+                c.AddSecurityRequirement(securityRequirement);
+                
             });
             return services;
         }
